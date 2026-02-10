@@ -19,3 +19,6 @@ Build/*
 
 # User specific
 *.user
+
+# Large Asset Packs
+Content/ParagonWraith/
