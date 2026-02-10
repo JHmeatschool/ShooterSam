@@ -1,0 +1,21 @@
+# Visual Studio files
+.vs
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.suo
+*.opensdf
+*.sdf
+
+# Unreal Engine generated files
+Binaries/*
+DerivedDataCache/*
+Intermediate/*
+Saved/*
+Build/*
+
+# Mac specific
+.DS_Store
+
+# User specific
+*.user
