@@ -42,6 +42,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	float MaxRange = 10000.0f;
 
+	UPROPERTY(EditAnywhere)
+	float BulletDamage = 10.0f;
+
 	AController* OwnerController;
 
 	void PullTrigger();
