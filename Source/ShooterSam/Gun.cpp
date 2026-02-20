@@ -5,6 +5,10 @@
 
 #include "Kismet/GameplayStatics.h"
 
+#define PI 3.14159f
+#define LOG(x) UE_LOG(LogTemp, Display, TEXT(x))
+#define LOG_WARNING(x) UE_LOG(LogTemp, Warning, TEXT(x))
+
 // Sets default values
 AGun::AGun()
 {
@@ -27,6 +31,10 @@ void AGun::BeginPlay()
 	Super::BeginPlay();
 	
 	MuzzleFlashParticleSystem->Deactivate();
+
+	// UE_LOG(LogTemp, Display, TEXT("The number pi is %f"), PI);
+	// LOG("Hello"); // UE_LOG(LogTemp, Display, TEXT("Hello"))
+	// LOG_WARNING("This is a warning!"); // UE_LOG(LogTemp, Warning, TEXT("This is a warning!"))
 }
 
 // Called every frame
