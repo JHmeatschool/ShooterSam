@@ -9,6 +9,23 @@
 #define LOG(x) UE_LOG(LogTemp, Display, TEXT(x))
 #define LOG_WARNING(x) UE_LOG(LogTemp, Warning, TEXT(x))
 
+class Shape
+{
+protected:
+	int32 Sides;
+};
+
+class Rectangle : public Shape
+{
+public:
+	void SetSides();
+};
+
+void Rectangle::SetSides()
+{
+	Sides = 4;
+}
+
 // Sets default values
 AGun::AGun()
 {
@@ -31,10 +48,6 @@ void AGun::BeginPlay()
 	Super::BeginPlay();
 	
 	MuzzleFlashParticleSystem->Deactivate();
-
-	// UE_LOG(LogTemp, Display, TEXT("The number pi is %f"), PI);
-	// LOG("Hello"); // UE_LOG(LogTemp, Display, TEXT("Hello"))
-	// LOG_WARNING("This is a warning!"); // UE_LOG(LogTemp, Warning, TEXT("This is a warning!"))
 }
 
 // Called every frame
