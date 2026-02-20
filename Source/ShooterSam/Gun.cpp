@@ -13,17 +13,48 @@ class Shape
 {
 protected:
 	int32 Sides;
+
+public:
+	virtual void Explain();
 };
+
+void Shape::Explain()
+{
+	LOG("I'm a shape!");
+}
 
 class Rectangle : public Shape
 {
 public:
 	void SetSides();
+
+	virtual void Explain() override;
 };
 
 void Rectangle::SetSides()
 {
 	Sides = 4;
+}
+
+void Rectangle::Explain()
+{
+	LOG("I'm a rectangle!");
+}
+
+void AGun::BeginPlay()
+{
+	Super::BeginPlay();
+
+	MuzzleFlashParticleSystem->Deactivate();
+
+	Shape MyShape;
+	Rectangle MyRect;
+
+	Shape* ShapePtr1 = &MyShape;
+	Shape* ShapePtr2 = &MyRect;
+
+	ShapePtr1->Explain();
+	ShapePtr2->Explain();
 }
 
 // Sets default values
@@ -40,14 +71,6 @@ AGun::AGun()
 
 	MuzzleFlashParticleSystem = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Muzzle Flash"));
 	MuzzleFlashParticleSystem->SetupAttachment(Mesh);
-}
-
-// Called when the game starts or when spawned
-void AGun::BeginPlay()
-{
-	Super::BeginPlay();
-	
-	MuzzleFlashParticleSystem->Deactivate();
 }
 
 // Called every frame
