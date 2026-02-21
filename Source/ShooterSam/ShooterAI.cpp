@@ -9,12 +9,17 @@ void AShooterAI::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (EnemyBehaviorTree)
+	{
+		RunBehaviorTree(EnemyBehaviorTree);
+	}
 }
 
 void AShooterAI::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	/*
 	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 	if (PlayerPawn)
 	{
@@ -29,4 +34,5 @@ void AShooterAI::Tick(float DeltaTime)
 			StopMovement();
 		}
 	}
+	*/
 }
