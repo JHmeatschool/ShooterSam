@@ -9,10 +9,6 @@ void AShooterAI::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (EnemyBehaviorTree)
-	{
-		RunBehaviorTree(EnemyBehaviorTree);
-	}
 }
 
 void AShooterAI::Tick(float DeltaTime)
@@ -35,4 +31,19 @@ void AShooterAI::Tick(float DeltaTime)
 		}
 	}
 	*/
+}
+
+void AShooterAI::StartBehaviorTree(AShooterSamCharacter* Player)
+{
+	if (EnemyBehaviorTree)
+	{
+		MyCharacter = Cast<AShooterSamCharacter>(GetPawn());
+
+		if (Player)
+		{
+			PlayerCharacter = Player;
+		}
+
+		RunBehaviorTree(EnemyBehaviorTree);
+	}
 }
