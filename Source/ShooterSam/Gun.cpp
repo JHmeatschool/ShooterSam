@@ -5,56 +5,11 @@
 
 #include "Kismet/GameplayStatics.h"
 
-#define PI 3.14159f
-#define LOG(x) UE_LOG(LogTemp, Display, TEXT(x))
-#define LOG_WARNING(x) UE_LOG(LogTemp, Warning, TEXT(x))
-
-class Shape
-{
-protected:
-	int32 Sides;
-
-public:
-	virtual void Explain();
-};
-
-void Shape::Explain()
-{
-	LOG("I'm a shape!");
-}
-
-class Rectangle : public Shape
-{
-public:
-	void SetSides();
-
-	virtual void Explain() override;
-};
-
-void Rectangle::SetSides()
-{
-	Sides = 4;
-}
-
-void Rectangle::Explain()
-{
-	LOG("I'm a rectangle!");
-}
-
 void AGun::BeginPlay()
 {
 	Super::BeginPlay();
 
 	MuzzleFlashParticleSystem->Deactivate();
-
-	Shape MyShape;
-	Rectangle MyRect;
-
-	Shape* ShapePtr1 = &MyShape;
-	Shape* ShapePtr2 = &MyRect;
-
-	ShapePtr1->Explain();
-	ShapePtr2->Explain();
 }
 
 // Sets default values
