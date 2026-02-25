@@ -12,6 +12,8 @@
 #include "InputActionValue.h"
 #include "ShooterSam.h"
 
+#include "ShooterSamPlayerController.h"
+
 AShooterSamCharacter::AShooterSamCharacter()
 {
 	// Set size for collision capsule
@@ -157,21 +159,35 @@ void AShooterSamCharacter::Shoot()
 		Gun->PullTrigger();
 }
 
+void AShooterSamCharacter::UpdateHUD()
+{
+	AShooterSamPlayerController* PlayerController = Cast<AShooterSamPlayerController>(GetController());
+	if (PlayerController)
+	{
+		float NewPercent = Health / MaxHealth;
+		if (NewPercent < 0.0f)
+		{
+			NewPercent = 0.0f;
+		}
+
+		PlayerController->HUDWidget->SetHealthBarPercent(NewPercent);
+	}
+}
+
 void AShooterSamCharacter::OnDamageTaken(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
 	if (IsAlive)
 	{
-		UE_LOG(LogTemp, Display, TEXT("Damage taken: %f"), Damage);
 
 		Health -= Damage;
+		UpdateHUD();
+
 		if (Health <= 0.0f)
 		{
 			IsAlive = false;
 			Health = 0.0f;
 			GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			DetachFromControllerPendingDestroy();
-
-			UE_LOG(LogTemp, Display, TEXT("Character died: %s"), *GetActorNameOrLabel());
 		}
 	}
 }
