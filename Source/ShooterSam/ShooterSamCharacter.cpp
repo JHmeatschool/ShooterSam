@@ -186,6 +186,10 @@ void AShooterSamCharacter::OnDamageTaken(AActor* DamagedActor, float Damage, con
 		{
 			IsAlive = false;
 			Health = 0.0f;
+			if (bIsBoss)
+			{
+				OnBossDied.Broadcast();
+			}
 			GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 			DetachFromControllerPendingDestroy();
 		}

@@ -15,6 +15,8 @@ class UCameraComponent;
 class UInputAction;
 struct FInputActionValue;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBossDied);
+
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
 /**
@@ -121,5 +123,10 @@ public:
 
 	UFUNCTION()
 	void OnDamageTaken(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
-};
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool bIsBoss = false;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnBossDied OnBossDied;
+};
