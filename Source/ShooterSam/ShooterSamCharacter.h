@@ -105,9 +105,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AGun> GunClass;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MaxHealth = 100.0f;
 
+	UPROPERTY(BlueprintReadWrite)
 	float Health;
 
 	UPROPERTY(BlueprintReadOnly)
@@ -115,6 +116,7 @@ public:
 
 	AGun* Gun;
 
+	UFUNCTION(BlueprintCallable)
 	void UpdateHUD();
 
 	UFUNCTION()
